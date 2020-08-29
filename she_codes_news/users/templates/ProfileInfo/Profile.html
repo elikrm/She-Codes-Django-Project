@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Account Info:</h2>
+
+<p>{{user.first_name}}</p>
+<p>{{user.last_name}}</p>
+<p>{{ user.username}}</p>
+<p>{{user.email}}</p>
+
+{% endblock %}
