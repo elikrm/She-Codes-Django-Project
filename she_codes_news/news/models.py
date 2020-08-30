@@ -25,4 +25,10 @@ class NewsStory(models.Model):
     category_story  = models.CharField(max_length=200, default = "Brisbane-Events")
 
     objects         = StoryManager()
+    # def __str__(self):
+    #  return self.author
+
+
+    # def show_author(self):
+    #     username = self.cleaned_data['author']
 

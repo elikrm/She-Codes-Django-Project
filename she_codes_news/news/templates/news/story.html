@@ -10,9 +10,14 @@
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
     <h4>{{ story.author }}</h4>
+    <h4>user name is {{user.username}}</h4>
+
     <div id="story-content">
         <img src="{{ story.image_url}}">   
         {{ story.content|linebreaks }}
     </div>
+	<p>{{ story.id }}</p>
+
 </div>
+
 {% endblock %}

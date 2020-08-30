@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block content %}
+    {% if user.is_authenticated %}
     <h3><a href="{% url 'news:newStory' %}">Write New Story</a></h3>
+
+
+
+
     <h2>Latest News</h2>
     <form method="get" action="/search1/">
         <p><label for="id_q">Search:</label>
@@ -37,5 +42,38 @@
             <p>No stories are available.</p>
         {% endif %}
     </div>
+    {% else %}
+    <h2>Latest News</h2>
+    <form method="get" action="/search1/">
+        <p><label for="id_q">Search:</label>
+        <input type="text" name="q" id="id_q" value="{{ query }}" />
+        <select name="category">
+          {% for category in categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+          {% endfor %}  
+        </select>
+        <input type="submit" value="Submit" /></p>
+    </form>
+    <div id="latest-stories">
+        {% if latest_stories %}
+            {% for story in latest_stories %}
+            {% include "./storyCard.html" with story=story position=forloop.counter %}
+            {% endfor %}
+        {% else %}
+            <p>No stories are available.</p>
+        {% endif %}
+    </div>
+
+    <div id="all-stories">
+        {% if all_stories %}
+            {% for story in all_stories %}
+            {% include "./storyCard.html" with story=story %}
+            {% endfor %}
+        {% else %}
+            <p>No stories are available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
 {% endblock %}
     
