@@ -9,5 +9,5 @@ urlpatterns = [
     path('add-story/', views.AddStoryView.as_view(), name='newStory'),
     path('serach-view/', views.SearchView.as_view(), name='searchStory'),
     path('<int:pk>/update-story/',views.ViewUpdateStory.as_view(), name ='updateStory'),
-    path('<int:pk>/delete-story/',views.ViewDeletePost.as_view(), name ='deleteStory'),
+    path('<int:pk>/delete-story/',views.ViewDeleteStory.as_view(), name ='deleteStory'),
 ]

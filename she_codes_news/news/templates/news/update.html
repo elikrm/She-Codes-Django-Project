@@ -7,10 +7,26 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'news:index' %}">Go Back To list</a>
+    <div class="form-item">
+        <p>
+            <a href="{% url 'news:index' %}">Go Back To list</a>
+        </p>
+        
+    </div>
+
+    
     <form action="" method="post">
-	{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-info">Update</button>
+
+    <div class="form-item">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </div>
+
+    <div class="form-item">
+        <p>
+            <button type="submit" class="btn btn-info">Update</button>
+        </p>
+    </div>
+    
     </form>
 {% endblock %}

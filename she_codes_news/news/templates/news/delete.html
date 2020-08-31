@@ -6,9 +6,19 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'news:index' %}">Go Back To list</a>
+<div class="form-delete">
+    <p>
+        <a href="{% url 'news:index' %}">Go Back To list</a>
+    </p>
+
     <form method="post">
-    {% csrf_token %}
-        <button class="btn btn-danger">Are you sure you want to delete {{ object }}?</button>
+        {% csrf_token %}
+        <p>
+            <button class="btn btn-danger">Are you sure you want to delete {{ object }}?</button>
+        </p>
+            
     </form>
+
+</div>
+
 {% endblock %}

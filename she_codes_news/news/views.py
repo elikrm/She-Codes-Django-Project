@@ -40,6 +40,30 @@ class AddStoryView(generic.CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)     
 
+class ViewUpdateStory(generic.UpdateView):
+    # form_class = StoryForm
+    model = NewsStory
+    template_name = 'news/update.html'
+    fields = ['title', 'content']
+ 
+    def get_object(self, queryset=None):
+        id = self.kwargs['pk']
+        return self.model.objects.get(id=id)
+        
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(reverse('news:index'))
+
+# Display a confirmation warning before deleting, if triggered with GET: it shows the warning(template view)
+# If triggered with POST then deletes, the template will receive object, which is the item to be deleted
+
+class ViewDeleteStory(generic.DeleteView):
+    template_name = 'news/delete.html'
+    model = NewsStory
+    # Notice get_success_url is defined here and not in the model, because the model will be deleted
+    def get_success_url(self):
+        return reverse('news:index')
+
 class SearchView(generic.ListView):
     model = NewsStory
     template_name = 'news/search.html'
@@ -69,27 +93,3 @@ class SearchView(generic.ListView):
             self.count = len(qs) # since qs is actually a list
             return qs
         return NewsStory.objects.none() # just an empty queryset as default
-
-class ViewUpdateStory(generic.UpdateView):
-    # form_class = StoryForm
-    model = NewsStory
-    template_name = 'news/update.html'
-    fields = ['title', 'content']
- 
-    def get_object(self, queryset=None):
-        id = self.kwargs['pk']
-        return self.model.objects.get(id=id)
-        
-    def form_valid(self, form):
-        form.save()
-        return HttpResponseRedirect(reverse('news:index'))
-
-# Display a confirmation warning before deleting, if triggered with GET: it shows the warning(template view)
-# If triggered with POST then deletes, the template will receive object, which is the item to be deleted
-
-class ViewDeletePost(generic.DeleteView):
-    template_name = 'news/delete.html'
-    model = NewsStory
-    # Notice get_success_url is defined here and not in the model, because the model will be deleted
-    def get_success_url(self):
-        return reverse('news:index')

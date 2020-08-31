@@ -17,7 +17,12 @@
         {{ story.content|linebreaks }}
     </div>
 	<p>{{ story.id }}</p>
-
+    <nav class="main-navigation">
+        <ul>
+            <li><a href="{% url 'news:updateStory' story.id %}">Edit</a></li>
+            <li><a href="{% url 'news:deleteStory' story.id %}">Delete</a></li>
+        </ul>
+    </nav>
 </div>
 
 {% endblock %}

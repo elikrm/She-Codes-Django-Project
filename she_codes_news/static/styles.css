@@ -196,80 +196,43 @@ form {
     
   }/* media query for 880px  */
   /* ---------------------------------------------------
-                EDIT DELETE NAVIGATION STYLES
+                DELETE HTML STYLES
 ----------------------------------------------------*/
-
-.edit-delete-nav ul {
-  padding-left: 0;
+.form-delete form {
+  margin: 50px auto;
+  width: 90%;
 }
 
-.edit-delete-nav li {
-  list-style: none;
-  text-align: center;
-  margin: 10px 0;
+.form-delete p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.form-delete button {
+  border: 2px solid #FDDC5C;
+  background-color: #FFF;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.form-delete button:hover {
+  border: 2px solid #AA0000;
   background-color: #AA0000;
-}
-
-.edit-delete-nav a {
-  display: block;
-  padding: 15px 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-  background: rgba(67,67,67,0.17);
   color: #FFF;
 }
 
-  .edit-delete-nav a:visited {
-    /* color: rgb(106,106,106); */
-    color: #FFF;
-  }
-
-  .edit-delete-nav a:hover {
-    color: rgb(8, 211, 18);
-    transition: .5s color;
-    background: rgba(62, 61, 61, 0.51);
-  }
-
-  .edit-delete-nav a:active {
-    color: rgb(172,140,71);
-  }
-
-@media screen and (min-width: 750px){
-  
-  .edit-delete-nav {
-    min-height: 100px;
-    border-top: 1px solid rgb(36,36,36);
-    border-bottom: 1px solid rgb(36,36,36);
-  } /* media query for 750px  */
-  
-  .edit-delete-nav ul {
-    max-width: 950px;
-    margin: 0 auto;
-  }
-  
-    .edit-delete-nav li {
-      float: left;
-      /* display: flex;
-      flex-direction: column;
-      justify-content:flex-start; */
-      margin-left: 20px;
-      width: 20%;
-    }
-  
-    .edit-delete-nav a {
-      background: none;
-    }
-  
-      .edit-delete-nav a:hover {
-        background: none;
-      }
-} /* media query for 750px  */
-
-@media screen and (min-width: 880px){
-  
-  .edit-delete-nav ul {
-    position: relative;
-    right: -30px ;
-  }
-  
-}/* media query for 880px  */
+.form-delete button {
+  width: 500px;
+}
+  /* ---------------------------------------------------
+                Profile View STYLES
+----------------------------------------------------*/
+.form-Profile p, h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 18px;
+}
