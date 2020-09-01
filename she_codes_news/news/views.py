@@ -8,6 +8,10 @@ from users.models import CustomUser
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.db.models import Q
+from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
 
@@ -64,9 +68,9 @@ class ViewDeleteStory(generic.DeleteView):
     def get_success_url(self):
         return reverse('news:index')
 
-class SearchView(generic.ListView):
+class AdvancedSearchView(generic.ListView):
     model = NewsStory
-    template_name = 'news/search.html'
+    template_name = 'news/Advancedsearch.html'
     paginate_by = 20
     count = 0
     
@@ -81,7 +85,7 @@ class SearchView(generic.ListView):
         query = request.GET.get('q', None)
         
         if query is not None:
-            NewsStory_results        = NewsStory.objects.search(query)
+            NewsStory_results        = NewsStory.objects.Advancedsearch(query)
             
             # combine querysets 
             queryset_chain = chain(
@@ -93,3 +97,30 @@ class SearchView(generic.ListView):
             self.count = len(qs) # since qs is actually a list
             return qs
         return NewsStory.objects.none() # just an empty queryset as default
+
+class SimpleSearchView(generic.ListView):
+    model = NewsStory
+    template_name = 'news/Simplesearch.html'
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q')
+
+        if query:
+            results = NewsStory.objects.filter(Q(category_story__icontains = query) | Q(title__icontains = query))
+            # combine querysets 
+            queryset_chain = chain(
+                    results,
+            )      
+            qs = sorted(queryset_chain, key=lambda instance: instance.pk, reverse=True)
+            self.count = len(qs) # since qs is actually a list
+            return qs
+        else:
+            results = NewsStory.objects.all()
+
+        # pages = Paginator(request, results, num =1)
+        # contex = {
+        #     'item': pages[0],
+        #     'page-range': pages[1]
+        # }
+        return results

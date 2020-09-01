@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import Q
 
 class StoryManager(models.Manager):
-    def search(self, query=None):
+    def Advancedsearch(self, query=None):
         qs = self.get_queryset()
         if query is not None:
             or_lookup = (Q(title__icontains=query) | 

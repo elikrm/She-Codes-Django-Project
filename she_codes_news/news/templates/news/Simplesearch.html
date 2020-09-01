@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load class_name %}
+
+        
+<form method="get" action=".">
+        
+  <input name="q" value="{{ request.Get.q}}" placeholder="search...">
+
+  <button type="submit" value="Submit">
+      search
+  </button>
+</form>
+    
+{% for object in object_list %}
+  {% with object|class_name as klass %}
+    {% if klass == 'NewsStory' %}
+         <div class='row'>
+           <div class='col-12'>
+              News NewsStory: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+          </div>
+        </div>
+    {% else %}
+         <div class='row'>
+           <div class='col-12 col-lg-8 offset-lg-4'>
+              <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|class_name }}</a>
+          </div>
+         </div>
+      {% endif %}
+      
+  {% endwith %}
+  
+{% empty %}
+
+{% endfor %}
+
+{% endblock content %}

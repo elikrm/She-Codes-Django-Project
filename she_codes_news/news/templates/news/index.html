@@ -10,19 +10,11 @@
     <h3><a href="{% url 'news:newStory' %}">Write New Story</a></h3>
 
 
-
+    <h3><a href="{% url 'news:advancedSearchStory' %}">Search For a story by title or category</a></h3>
 
     <h2>Latest News</h2>
-    <form method="get" action="/search1/">
-        <p><label for="id_q">Search:</label>
-        <input type="text" name="q" id="id_q" value="{{ query }}" />
-        <select name="category">
-          {% for category in categories %}
-            <option value="{{category.id}}">{{category.name}}</option>
-          {% endfor %}  
-        </select>
-        <input type="submit" value="Submit" /></p>
-    </form>
+
+
     <div id="latest-stories">
         {% if latest_stories %}
             {% for story in latest_stories %}
