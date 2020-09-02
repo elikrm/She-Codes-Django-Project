@@ -19,6 +19,3 @@ class ViewProfile(generic.DetailView):
     def get_object(self):
         return CustomUser.objects.all()
    
-
-
-    

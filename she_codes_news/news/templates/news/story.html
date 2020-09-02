@@ -9,21 +9,23 @@
 
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
-    <h4>{{ story.author }}</h4>
-    <h4>{{ story.category_story }}</h4>
-    <h4>user name is {{user.username}}</h4>
+    <h4>Story Author: {{ story.author }}</h4>
+    <h4>Event Category: {{ story.category_story }}</h4>
+    <h4>User name now is {{user.username}}</h4>
 
     <div id="story-content">
         <img src="{{ story.image_url}}">   
         {{ story.content|linebreaks }}
     </div>
-	<p>{{ story.id }}</p>
+    <p>Story number is: {{ story.id }}</p>
+    {% if user.is_authenticated and request.user == story.author %}
     <nav class="main-navigation">
         <ul>
             <li><a href="{% url 'news:updateStory' story.id %}">Edit</a></li>
             <li><a href="{% url 'news:deleteStory' story.id %}">Delete</a></li>
         </ul>
     </nav>
+    {% endif %}
 </div>
 
-{% endblock %}
+{% endblock %} 

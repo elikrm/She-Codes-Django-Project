@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+
 {% block content %}
 <div class="form-Profile">
     <h2>Your Account Info:</h2>
@@ -7,6 +11,7 @@
     <p>Last name is: {{user.last_name}}</p>
     <p>Username is: {{ user.username}}</p>
     <p>Email address is: {{user.email}}</p>
+    
 </div>
 
 {% endblock %}
