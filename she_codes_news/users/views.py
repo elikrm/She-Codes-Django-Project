@@ -6,11 +6,15 @@ from django.views.generic.edit import CreateView
 from django.views import generic
 from .models import CustomUser
 from .forms import CustomUserCreationForm
+from django.http import HttpResponse
 
 class CreateAccountView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'users/createAccount.html'
+    def success(self):
+        request = self.request
+        return HttpResponse('successfully uploaded')   
 
 class ViewProfile(generic.DetailView):
     model = CustomUser

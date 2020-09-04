@@ -23,6 +23,7 @@ class NewsStory(models.Model):
     content         = models.TextField()
     image_url       = models.CharField(max_length=200, default ="https://api.time.com/wp-content/uploads/2019/03/us-movie-rabbits-meaning.jpg") 
     category_story  = models.CharField(max_length=200, default = "Brisbane-Events")
+    #main_image = models.ImageField(upload_to='images/', null=True)
 
     objects         = StoryManager()
     # def __str__(self):

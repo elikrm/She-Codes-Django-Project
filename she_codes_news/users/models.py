@@ -9,5 +9,5 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=100, verbose_name='last name')
     def __str__(self):
         return self.username
-    profile_photo = models.ImageField(upload_to='profile_photo/', verbose_name="profile photo", default="placeholder-1.jpg")
-        
+    main_image = models.ImageField(upload_to='images/', null=True)
+    

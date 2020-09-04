@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
@@ -42,7 +43,11 @@ class AddStoryView(generic.CreateView):
     
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)     
+        return super().form_valid(form) 
+
+    # def success(self):
+    #     request = self.request
+    #     return HttpResponse('successfully uploaded')    
 
 class ViewUpdateStory(generic.UpdateView):
     # form_class = StoryForm
